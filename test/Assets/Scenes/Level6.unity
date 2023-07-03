@@ -690,6 +690,11 @@ MonoBehaviour:
   startingBullets: 15
   livesText: {fileID: 8519823}
   pointsText: {fileID: 0}
+  Heart1: {fileID: 0}
+  Heart2: {fileID: 0}
+  Heart3: {fileID: 0}
+  tempColor: {r: 0, g: 0, b: 0, a: 0}
+  originalColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1614,7 +1619,7 @@ MonoBehaviour:
   - {fileID: 2057714145}
   - {fileID: 1829551993}
   objectPrefab: {fileID: 7513049007727146364, guid: 4bb128e5257621a4d9aa63cd3c53993d, type: 3}
-  numObjectsToSpawn: 20
+  numObjectsToSpawn: 999
   spawnDelay: 0
   BlueDuck: {fileID: 6782775064450631743, guid: ddb8273368452e649af4af868947dda1, type: 3}
   BlackDuck: {fileID: 731644229562974467, guid: f01183167291dea49b12009ed2da814c, type: 3}
@@ -1643,7 +1648,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1728614018}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.57, y: 1.99, z: 0}
+  m_LocalPosition: {x: -6.57, y: 5.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

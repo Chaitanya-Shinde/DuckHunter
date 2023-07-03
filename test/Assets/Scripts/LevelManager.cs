@@ -75,7 +75,7 @@ public class LevelManager : MonoBehaviour
         DifficultyHandler();
         //PlayerLost();
 
-        Debug.Log(currentLevel);
+        //Debug.Log(currentLevel);
 
         Debug.Log(PlayerPrefs.GetInt("levelAt"));
 
@@ -86,7 +86,7 @@ public class LevelManager : MonoBehaviour
 
         nextSceneLoad = SceneManager.GetActiveScene().buildIndex;
 
-        if (SceneManager.GetActiveScene().buildIndex == 13)
+        if (SceneManager.GetActiveScene().buildIndex == 14)
         {
             Debug.Log("You win!!!");
         }
@@ -95,7 +95,7 @@ public class LevelManager : MonoBehaviour
             PlayerPrefs.SetInt("levelAt", nextSceneLoad);
         }
 
-        if(playerInput.Player.enabled == true)
+       /* if(playerInput.Player.enabled == true)
         {
             Debug.Log("Player input actiosn is enabled");
         }
@@ -103,7 +103,7 @@ public class LevelManager : MonoBehaviour
         {
             Debug.Log("UI input actiosn is enabled");
         }
-        
+        */
 
         
     }
@@ -257,19 +257,27 @@ public class LevelManager : MonoBehaviour
             StartCoroutine(HideGoalText());
 
         }
-        else if (crntLVL >=5 && crntLVL < 12)
+        else if (crntLVL >=5 && crntLVL < 13)
         {
             goalText.text = "Score 5 points!";
             //Destroy(goalText.gameObject, 2);
-           
-            if (Target.BirdsKilled > 4)
+            
+            
+            if (Target.BirdsKilled > 4 && crntLVL != 12)
             {
                 //Time.timeScale = 0f;
                 Debug.Log("level complete");
                 ShowNextLevelMenu();
             }
+            else if(Target.BirdsKilled >4 && crntLVL == 12)
+            {
+                SceneManager.LoadScene(14);
+            }
             //Invoke("HideGoalText", 2);
             StartCoroutine(HideGoalText());
+            
+            
+            
         }
 
     }

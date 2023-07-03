@@ -502,6 +502,17 @@ public partial class @PlayerInputAsset : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
+                    ""name"": """",
+                    ""id"": ""60d97ae8-9e88-4dcf-a785-9f97c883a14b"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DeletePrefs"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
                     ""name"": ""Gamepad"",
                     ""id"": ""735081e0-0822-4a65-8ce0-57e59614a4f7"",
                     ""path"": ""2DVector"",
@@ -940,9 +951,30 @@ public partial class @PlayerInputAsset : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Back"",
+                    ""type"": ""Button"",
+                    ""id"": ""dddbdf27-6143-4e0c-9b33-24877d5bdf87"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
-            ""bindings"": []
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""2747d550-040a-4525-ba60-30163e309dd4"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         },
         {
             ""name"": ""Home"",
@@ -1044,6 +1076,7 @@ public partial class @PlayerInputAsset : IInputActionCollection2, IDisposable
         m_LevelSelect_Level1 = m_LevelSelect.FindAction("Level1", throwIfNotFound: true);
         m_LevelSelect_Level2 = m_LevelSelect.FindAction("Level2", throwIfNotFound: true);
         m_LevelSelect_Level3 = m_LevelSelect.FindAction("Level3", throwIfNotFound: true);
+        m_LevelSelect_Back = m_LevelSelect.FindAction("Back", throwIfNotFound: true);
         // Home
         m_Home = asset.FindActionMap("Home", throwIfNotFound: true);
     }
@@ -1326,6 +1359,7 @@ public partial class @PlayerInputAsset : IInputActionCollection2, IDisposable
     private readonly InputAction m_LevelSelect_Level1;
     private readonly InputAction m_LevelSelect_Level2;
     private readonly InputAction m_LevelSelect_Level3;
+    private readonly InputAction m_LevelSelect_Back;
     public struct LevelSelectActions
     {
         private @PlayerInputAsset m_Wrapper;
@@ -1333,6 +1367,7 @@ public partial class @PlayerInputAsset : IInputActionCollection2, IDisposable
         public InputAction @Level1 => m_Wrapper.m_LevelSelect_Level1;
         public InputAction @Level2 => m_Wrapper.m_LevelSelect_Level2;
         public InputAction @Level3 => m_Wrapper.m_LevelSelect_Level3;
+        public InputAction @Back => m_Wrapper.m_LevelSelect_Back;
         public InputActionMap Get() { return m_Wrapper.m_LevelSelect; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1351,6 +1386,9 @@ public partial class @PlayerInputAsset : IInputActionCollection2, IDisposable
                 @Level3.started -= m_Wrapper.m_LevelSelectActionsCallbackInterface.OnLevel3;
                 @Level3.performed -= m_Wrapper.m_LevelSelectActionsCallbackInterface.OnLevel3;
                 @Level3.canceled -= m_Wrapper.m_LevelSelectActionsCallbackInterface.OnLevel3;
+                @Back.started -= m_Wrapper.m_LevelSelectActionsCallbackInterface.OnBack;
+                @Back.performed -= m_Wrapper.m_LevelSelectActionsCallbackInterface.OnBack;
+                @Back.canceled -= m_Wrapper.m_LevelSelectActionsCallbackInterface.OnBack;
             }
             m_Wrapper.m_LevelSelectActionsCallbackInterface = instance;
             if (instance != null)
@@ -1364,6 +1402,9 @@ public partial class @PlayerInputAsset : IInputActionCollection2, IDisposable
                 @Level3.started += instance.OnLevel3;
                 @Level3.performed += instance.OnLevel3;
                 @Level3.canceled += instance.OnLevel3;
+                @Back.started += instance.OnBack;
+                @Back.performed += instance.OnBack;
+                @Back.canceled += instance.OnBack;
             }
         }
     }
@@ -1470,6 +1511,7 @@ public partial class @PlayerInputAsset : IInputActionCollection2, IDisposable
         void OnLevel1(InputAction.CallbackContext context);
         void OnLevel2(InputAction.CallbackContext context);
         void OnLevel3(InputAction.CallbackContext context);
+        void OnBack(InputAction.CallbackContext context);
     }
     public interface IHomeActions
     {

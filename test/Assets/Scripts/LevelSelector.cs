@@ -21,13 +21,15 @@ public class LevelSelector : MonoBehaviour
         Time.timeScale = 1f;
         playerInput = new PlayerInputAsset();
         //playerInput.LevelSelect.Enable();
+        //playerInput.UI.Enable();
         /*playerInput.LevelSelect.Level1.performed += Level1;
         playerInput.LevelSelect.Level2.performed += Level2;
         playerInput.LevelSelect.Level3.performed += Level3;*/
+        //playerInput.LevelSelect.Back.performed += Back;
         //levelText.text = level.ToString();
 
         levelAt = PlayerPrefs.GetInt("levelAt", 2);
-        Debug.Log(levelBtns.Length);
+        //Debug.Log(levelBtns.Length);
         for (int i = 0; i < levelBtns.Length; i++)
         {
             if (i + 2 > levelAt)
@@ -51,6 +53,16 @@ public class LevelSelector : MonoBehaviour
         /*playerInput.LevelSelect.Level1.performed -= Level1;
         playerInput.LevelSelect.Level2.performed -= Level2;
         playerInput.LevelSelect.Level3.performed -= Level3;*/
+    }
+
+  /*  public void Back(InputAction.CallbackContext context)
+    {
+        SceneManager.LoadScene(0);
+    }*/
+
+    public void GoBack()
+    {
+        SceneManager.LoadScene(0);
     }
 
     /*public void LevelOne()

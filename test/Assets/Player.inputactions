@@ -480,6 +480,17 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "",
+                    "id": "60d97ae8-9e88-4dcf-a785-9f97c883a14b",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DeletePrefs",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "Gamepad",
                     "id": "735081e0-0822-4a65-8ce0-57e59614a4f7",
                     "path": "2DVector",
@@ -918,9 +929,30 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Back",
+                    "type": "Button",
+                    "id": "dddbdf27-6143-4e0c-9b33-24877d5bdf87",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
-            "bindings": []
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "2747d550-040a-4525-ba60-30163e309dd4",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         },
         {
             "name": "Home",

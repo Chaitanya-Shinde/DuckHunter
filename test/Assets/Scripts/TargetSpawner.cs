@@ -7,7 +7,7 @@ public class TargetSpawner : MonoBehaviour
     public GameObject[] spawnPoints;  // Array of spawn point GameObjects
     public GameObject objectPrefab;  // The object prefab to be instantiated
 
-    public int numObjectsToSpawn = 10;  // Number of objects to spawn
+    public int numObjectsToSpawn = 999;  // Number of objects to spawn
     public int spawnDelay =3;
     private GameObject spawnPoint;
     public GameObject BlueDuck;

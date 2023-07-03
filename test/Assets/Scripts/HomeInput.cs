@@ -24,6 +24,7 @@ public class HomeInput : MonoBehaviour
         playerInput.UI.Enable();
         //playerInput.Home.Play.performed += LevelSelect;
         playerInput.UI.LevelSelection.performed += LevelSelect;
+        playerInput.UI.DeletePrefs.performed += ClearProgress;
 
     }
 
@@ -38,9 +39,24 @@ public class HomeInput : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
+    public void Clear()
+    {
+        Debug.Log("deleted");
+        PlayerPrefs.DeleteAll();
+    }
+
+
+
+    public void ClearProgress(InputAction.CallbackContext context)
+    {
+        Debug.Log("deleted");
+        PlayerPrefs.DeleteAll();
+        
+    }
+
     public void LevelSelect(InputAction.CallbackContext context)
     {
-        Debug.Log("world");
+        //Debug.Log("hello world");
         SceneManager.LoadScene(1);
     }
 
