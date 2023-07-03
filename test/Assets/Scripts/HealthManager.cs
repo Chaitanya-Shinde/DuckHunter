@@ -17,13 +17,10 @@ public class HealthManager : MonoBehaviour
     public Image Heart3;
     public Color tempColor;
     public Color originalColor;
-    //public TMP_Text bulletsText;
-    //public GameObject gameOverPanel;
-
     public static int currentLives;
     private int currentBullets;
 
-    //public GameObject[] targets;
+
     private void Start()
     {
        
@@ -32,7 +29,7 @@ public class HealthManager : MonoBehaviour
         currentBullets = startingBullets;
 
         UpdateLivesText();
-        //UpdateBulletsText();
+
         livesText.text = "Lives: " + currentLives;
         pointsText.text = "Points: " + 0;
 
@@ -53,14 +50,9 @@ public class HealthManager : MonoBehaviour
         Heart1 = GameObject.Find("heart1").GetComponent<Image>();
         Heart2 = GameObject.Find("heart2").GetComponent<Image>();
         Heart3 = GameObject.Find("heart3").GetComponent<Image>();
-        //targets = GameObject.FindGameObjectsWithTag("target");
+
         points = Target.BirdsKilled;
         ManagePoints();
-        /*if(LevelManager.playerLost == true)
-        {
-            currentLives = 0;
-        }*/
-
 
         switch (currentLives)
         {
@@ -79,7 +71,6 @@ public class HealthManager : MonoBehaviour
 
         }
 
-
         Debug.Log(currentLives);
 
     }
@@ -88,7 +79,6 @@ public class HealthManager : MonoBehaviour
     {
         if (other.gameObject.tag == "bullet")
         {
-            //Debug.Log("Lost a life");
             ReduceLives();
         }
     }
@@ -105,12 +95,10 @@ public class HealthManager : MonoBehaviour
         {
             GameOver();
             playerLost = true;
-            
         }
         else if(currentLives !=0 && currentLives>0)
         {
             playerLost = false;
-            //Debug.Log("lost a heart");
             UpdateLivesText();
         }
     }
@@ -118,19 +106,12 @@ public class HealthManager : MonoBehaviour
     private void UpdateLivesText()
     {
         livesText.text = "Lives: " + currentLives;
-        //Debug.Log(currentLives);
     }
-
-   /* private void UpdateBulletsText()
-    {
-        bulletsText.text = "Bullets: " + currentBullets.ToString();
-    }*/
 
     private void GameOver()
     {
         Debug.Log("Game over");
         livesText.text = "Lives: 0";
-        //gameOverPanel.SetActive(true);
-        // Add any additional game over logic here
+
     }
 }

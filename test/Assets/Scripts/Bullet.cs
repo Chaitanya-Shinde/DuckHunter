@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
 {
     public float life = 5;
 
-    // Start is called before the first frame update
+  
     void Start()
     {
         Destroy(gameObject, life);
@@ -14,9 +14,4 @@ public class Bullet : MonoBehaviour
 
    
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

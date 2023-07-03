@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class TargetSpawner : MonoBehaviour
 {
-    public GameObject[] spawnPoints;  // Array of spawn point GameObjects
-    public GameObject objectPrefab;  // The object prefab to be instantiated
+    public GameObject[] spawnPoints;
+    public GameObject objectPrefab;  
 
-    public int numObjectsToSpawn = 999;  // Number of objects to spawn
+    public int numObjectsToSpawn = 999; 
     public int spawnDelay =3;
     private GameObject spawnPoint;
     public GameObject BlueDuck;
@@ -20,11 +20,9 @@ public class TargetSpawner : MonoBehaviour
 
     IEnumerator SpawnObjects()
     {
-        // Iterate for the desired number of objects to spawn
         for (int i = 0; i < numObjectsToSpawn; i++)
         {
             spawnDelay = Random.Range(1, 5);
-            // Get a random spawn point from the array
             int randomNum = Random.Range(0, spawnPoints.Length);
             spawnPoint = spawnPoints[randomNum];
 
@@ -44,10 +42,7 @@ public class TargetSpawner : MonoBehaviour
                     break;
 
             }
-            // Instantiate the object at the spawn point's position and rotation
-            
-            
-            // Optionally, you can do something with the spawned object here
+
             yield return new WaitForSeconds(spawnDelay);
         }
     }

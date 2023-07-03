@@ -18,7 +18,7 @@ public class Target : MonoBehaviour
     public static int BirdsKilled =0;
     void Start()
     {
-        //Destroy(gameObject, life);
+
         startPos = transform.position;
         moveSpeed = Random.Range(2, 10);
         frequency = Random.Range(1, 5);
@@ -31,14 +31,13 @@ public class Target : MonoBehaviour
         {
             BirdsKilled++;
             HitTarget = true;
-            //Debug.Log("Hit target");
+
             Destroy(other.gameObject);
             string BirdName= transform.GetChild(0).name;
             switch (BirdName)
             {
                 case "BlueDuck(Clone)":
                     Debug.Log("Hit BlueBird");
-                    //Animator anim1 = transform.GetChild(0).GetComponent<Animator>();
                     transform.GetChild(0).gameObject.SetActive(false);
                     GameObject BlueBird = Instantiate(BlueDead, transform.GetChild(0).position, transform.GetChild(0).rotation);
                     BlueBird.GetComponent<Rigidbody>().useGravity = true;
@@ -65,12 +64,8 @@ public class Target : MonoBehaviour
     }
 
 
-    // Update is called once per frame
     void Update()
     {
-        //transform.Translate(new Vector3(10f, 0f, 0f) * Time.deltaTime, Space.Self);
-        //transform.position = startPos + transform.up * Mathf.Sin(Time.time + frequency + offset) * magnitude;
-
         startPos += transform.right * Time.deltaTime * moveSpeed;
         transform.position = startPos + transform.up * Mathf.Sin(Time.time * frequency) * magnitude;
 

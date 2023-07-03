@@ -15,7 +15,7 @@ public class LevelManager : MonoBehaviour
     public int crntLVL;
     public static int nextLevel;
     public int nextSceneLoad = 0;
-    //public GameObject PauseMenu;
+    
     public CanvasGroup pauseCG;
     public CanvasGroup nxtLevelCG;
     public CanvasGroup youLoseCG;
@@ -35,31 +35,16 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    /*private void OnEnable()
-    {
-        
-        Time.timeScale = 1f;
-        playerInput.Player.Enable();
-        playerInput.Player.Pause.performed += PauseGame;
-        playerInput.Player.Resume.performed += ResumeGame;
-        playerInput.Player.MainMenu.performed += MainMenu;
-        playerInput.Player.NextLevel.performed += LoadNextLevel;
-        //HealthManager.playerLost = false;
-    }*/
+    
     void Start()
     {
         
         playerInput = new PlayerInputAsset();
-        //playerInput.Home.Enable();
         playerInput.Player.Enable();
         playerInput.Player.Pause.performed += PauseGame;
         playerInput.Player.Resume.performed += ResumeGame;
         playerInput.Player.MainMenu.performed += MainMenu;
         playerInput.Player.NextLevel.performed += LoadNextLevel;
-        //playerInput.UI.DeletePrefs.performed += DeletePlayerPrefs;
-
-        
-        //LoadLevel(currentLevel);
     }
 
     private void Update()
@@ -73,10 +58,6 @@ public class LevelManager : MonoBehaviour
         lvlText.text = "Level: " + crntLVL;
 
         DifficultyHandler();
-        //PlayerLost();
-
-        //Debug.Log(currentLevel);
-
         Debug.Log(PlayerPrefs.GetInt("levelAt"));
 
         if (HealthManager.playerLost)
@@ -95,24 +76,9 @@ public class LevelManager : MonoBehaviour
             PlayerPrefs.SetInt("levelAt", nextSceneLoad);
         }
 
-       /* if(playerInput.Player.enabled == true)
-        {
-            Debug.Log("Player input actiosn is enabled");
-        }
-        if(playerInput.UI.enabled == true)
-        {
-            Debug.Log("UI input actiosn is enabled");
-        }
-        */
-
         
     }
 
-    /*void DeletePlayerPrefs(InputAction.CallbackContext context)
-    {
-        PlayerPrefs.DeleteAll();
-        Debug.Log("deleted prefs");
-    }*/
 
     void PauseGame(InputAction.CallbackContext context)
     {
@@ -140,11 +106,8 @@ public class LevelManager : MonoBehaviour
         pauseCG.alpha = 0.0f;
         pauseCG.blocksRaycasts = false;
         HideNextLevelMenu();
-        //HideYouLoseScreen();
-        //LoadLevel(0);
         HideYouLoseScreen();
         SceneManager.LoadScene(0);
-        //StartCoroutine(Delay());
         HealthManager.currentLives = 0;
         ResetAllData();
         Time.timeScale = 1f;
@@ -161,8 +124,6 @@ public class LevelManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         HideYouLoseScreen();
-        //StartCoroutine(Delay());
-        // Check if the level index is within the bounds of the level scenes array
         if (levelIndex >= 0 && levelIndex < levelScenes.Length)
         {
             // Load the specified scene
@@ -172,12 +133,11 @@ public class LevelManager : MonoBehaviour
             Time.timeScale = 1f;
             SceneManager.LoadScene(levelScenes[levelIndex+1]);
             currentLevel++;
-            //currentLevel = levelIndex;
+
             
         }
         else
         {
-            // Level index is out of bounds
             Debug.LogError("Invalid level index: " + levelIndex);
         }
     }
@@ -191,19 +151,12 @@ public class LevelManager : MonoBehaviour
         int nextLevelIndex = currentLevel + 1;
         nextLevel = nextLevelIndex;
 
-        // Check if the next level index is within the bounds of the level scenes array
         if (nextLevelIndex < levelScenes.Length)
-        {
-            
-            
+        {    
             ResetAllData();
             Debug.Log("Level Complete");
             Time.timeScale = 1f;
-            //SceneManager.LoadScene("Loading");
-            
             LoadLevel(nextLevelIndex);
-            
-
         }
         else
         {
@@ -215,11 +168,8 @@ public class LevelManager : MonoBehaviour
 
     void ResetAllData()
     {
-        //currentLevel = 0;
         Time.timeScale = 1f;
-        
         Target.BirdsKilled = 0;
-        //Debug.Log("reset all Data");
     }
 
     public void DifficultyHandler()
@@ -227,45 +177,29 @@ public class LevelManager : MonoBehaviour
         if(crntLVL ==1)
         {
             goalText.text = "Score 1 point!";
-            
-            //Destroy(goalText.gameObject,2);
-            
             if(Target.BirdsKilled >0)
             {
-                //Time.timeScale = 0f;
-                //Debug.Log("level complete");
                 ShowNextLevelMenu();
             }
-            
-            //Invoke("HideGoalText", 2);
             StartCoroutine(HideGoalText());
 
         }
         else if(crntLVL >=2 && crntLVL <5)
         {
             goalText.text = "Score 3 points!";
-            //goalText.alpha = 0f;
-            //Destroy(goalText.gameObject, 2);
-            
             if (Target.BirdsKilled > 2)
             {
-                //Time.timeScale = 0f;
                 Debug.Log("level complete");
                 ShowNextLevelMenu();
             }
-            //Invoke("HideGoalText", 2);
             StartCoroutine(HideGoalText());
 
         }
         else if (crntLVL >=5 && crntLVL < 13)
         {
             goalText.text = "Score 5 points!";
-            //Destroy(goalText.gameObject, 2);
-            
-            
             if (Target.BirdsKilled > 4 && crntLVL != 12)
             {
-                //Time.timeScale = 0f;
                 Debug.Log("level complete");
                 ShowNextLevelMenu();
             }
@@ -273,7 +207,6 @@ public class LevelManager : MonoBehaviour
             {
                 SceneManager.LoadScene(14);
             }
-            //Invoke("HideGoalText", 2);
             StartCoroutine(HideGoalText());
             
             
@@ -285,26 +218,19 @@ public class LevelManager : MonoBehaviour
     IEnumerator HideGoalText()
     {
         yield return new WaitForSeconds(2);
-        //goalText.gameObject.SetActive(false);
+
         Time.timeScale = 1f;
         goalText.alpha = 0f;
     }
 
     void PlayerLost()
     {
-        //if(HealthManager.currentLives == 0)
-        //{
-            //Time.timeScale = 0f;
-            //StartCoroutine(Delay());
-            currentLevel = 0;
-            ShowYouLoseScreen();
-            //playerLost = false;
-        //}
+        currentLevel = 0;
+        ShowYouLoseScreen();
     }
 
     void ShowNextLevelMenu()
     {
-        //Time.timeScale = 0f;
         nxtLevelCG.alpha = 1.0f;
         nxtLevelCG.blocksRaycasts = true;
         nxtLevelCG.interactable = true;
@@ -320,9 +246,6 @@ public class LevelManager : MonoBehaviour
 
     void ShowYouLoseScreen()
     {
-        //yield return new WaitForSeconds(2);
-        //Time.timeScale = 0f;
-        //HealthManager.currentLives = 0;
         youLoseCG.alpha = 1.0f;
         youLoseCG.blocksRaycasts = true;
         youLoseCG.interactable = true;
